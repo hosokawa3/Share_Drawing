@@ -32,5 +32,7 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- フリーイラスト素材として以下を使用予定
-  - イラストAC(https://www.ac-illust.com/)
+- フリーアイコン・ロゴ素材として以下を使用予定
+  - AdobeExpress(https://www.adobe.com/jp/express/create/logo)
+  - Font Awesome(https://fontawesome.com/)
+  - なお、著作権を考慮し、アニメやゲームのファンアートなどは取り扱いません。
