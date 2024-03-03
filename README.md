@@ -35,4 +35,4 @@
 - フリーアイコン・ロゴ素材として以下を使用予定
   - AdobeExpress(https://www.adobe.com/jp/express/create/logo)
   - Font Awesome(https://fontawesome.com/)
-  - なお、著作権を考慮し、アニメやゲームのファンアートなどは取り扱いません。
+- なお、著作権を考慮し、アニメやゲームのファンアートなどは取り扱いません。
