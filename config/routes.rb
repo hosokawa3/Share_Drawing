@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
 
-  # namespace :public do
-    # get 'homes/top'
-    # get 'homes/about'
-  # end
-  # namespace :public do
-    # get 'end_users/show'
-    # get 'end_users/edit'
-  # end
-
   scope module: :public do
     root to: 'homes#top'
     get '/about' => "homes#about"
-    resources :end_users, only: [:show, :edit]
+    # resources :end_users, only: [:show, :edit]
+    get 'end_users/mypage' => 'end_users#show', as: 'mypage'
+    get 'end_users/information/edit' => 'end_users#edit', as: 'edit_information'
   end
 
   #管理者側
