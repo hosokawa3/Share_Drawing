@@ -1,2 +1,15 @@
-<h1>Public::EndUsers#show</h1>
-<p>Find me in app/views/public/end_users/show.html.erb</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <h4 class="my-5"><%= @end_user.name %></h4>
+            <%= @end_user.introduction %>
+        </div>
+        <div class="col-md-2 my-5">
+            <% if current_end_user == @end_user %>
+            <%= link_to "編集", edit_information_path(@end_user), class: "btn btn-info" %>
+            <% end %>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

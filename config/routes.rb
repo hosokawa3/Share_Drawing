@@ -3,9 +3,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get '/about' => "homes#about"
-    # resources :end_users, only: [:show, :edit]
-    get 'end_users/mypage' => 'end_users#show', as: 'mypage'
-    get 'end_users/information/edit' => 'end_users#edit', as: 'edit_information'
+    get 'end_users/profile/:id' => 'end_users#show', as: 'profile'
+    get 'end_users/information/edit/:id' => 'end_users#edit', as: 'edit_information'
   end
 
   #管理者側
