@@ -1,2 +1,16 @@
-<h1>Public::EndUsers#edit</h1>
-<p>Find me in app/views/public/end_users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h3>プロフィール編集</h3>
+    <div class="mx-auto">
+
+      <%= form_with model: [:public, @end_user], local: true do |f| %>
+      <div class="form-group row">
+        <%= f.label :profile_image, 'ユーザーアイコン', class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-9">
+          <%= f.file_field :profile_image, accept: "image/*", class: 'form-control' %>
+        </div>
+      </div>
+      <% end %>
+     </div>
+  </div>
+</div>

@@ -4,5 +4,6 @@ class Public::EndUsersController < ApplicationController
   end
 
   def edit
+    @end_user = EndUser.find(params[:id])
   end
 end
