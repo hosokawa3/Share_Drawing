@@ -1,2 +1,26 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h3>投稿作品編集</h3>
+    <div class="mx-auto">
+      <%= image_tag @post.get_image(300, 300) %>
+
+      <%= form_with model: @post do |f| %>
+      <div class="form-group row">
+        <%= f.label :title, '作品名', class: 'col-md-4 col-form-label' %>
+        <div class="col-md-8">
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :caption, '作品説明文', class: 'col-md-4 col-form-label' %>
+        <div class="col-md-8">
+          <%= f.text_area :caption, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+         <%= f.submit '保存する', class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

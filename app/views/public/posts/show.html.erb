@@ -1,2 +1,19 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <%= image_tag @post.get_image(500, 500) %>
+    </div>
+    <div class="col-md-4">
+      <h2 class="my-5"><%= @post.title %></h2>
+      <P><%= @post.caption %></P>
+      <P>
+        <%= link_to profile_path(@post.end_user.id) do %>
+        <%= image_tag @post.end_user.get_profile_image(100, 100) %>
+        <%= @post.end_user.name %>
+        <% end %>
+      </p>
+      <%= link_to "作品を編集する", edit_post_path(@post.id), class:"btn btn-success" %>
+    </div>
+  </div>
+</div>
