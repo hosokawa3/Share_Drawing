@@ -13,7 +13,9 @@
         <%= @post.end_user.name %>
         <% end %>
       </p>
+      <% if @post.end_user == current_end_user %>
       <%= link_to "作品を編集する", edit_post_path(@post.id), class:"btn btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>

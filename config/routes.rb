@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'end_users/profile/:id' => 'end_users#show', as: 'profile'
     get 'end_users/information/edit/:id' => 'end_users#edit', as: 'edit_information'
     patch 'end_users/information/:id' => 'end_users#update', as: 'update_information'
-    resources :posts, only: [:new, :index, :show, :edit, :create, :update]
+    resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   end
 
   #管理者側
