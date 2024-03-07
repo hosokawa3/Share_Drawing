@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-2"><%= image_tag @end_user.get_profile_image(100,100) %></div>
+        <div class="col-md-2 my-5"><%= image_tag @end_user.get_profile_image(100,100) %></div>
         <div class="col-md-4">
             <h4 class="my-5"><%= @end_user.name %></h4>
             <%= @end_user.introduction %>
@@ -11,5 +11,16 @@
             <% end %>
         </div>
         <div class="col-md-4"></div>
+        <h4>投稿作品</h4>
+        <div class="new-posts" style="display: flex; justify-content: space-around;">
+            <% @posts.each do |post| %>
+            <div class="new-post" style="padding: 10px; flex: 1; margin: 10px;">
+            <%= link_to post_path(post.id) do %>
+            <%= image_tag post.get_image(180, 180) %>
+            <h6><%= post.title %></h6>
+            <% end %>
+            </div>
+            <% end %>
+        </div>
     </div>
 </div>
