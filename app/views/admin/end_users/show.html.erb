@@ -1,2 +1,37 @@
-<h1>Admin::EndUsers#show</h1>
-<p>Find me in app/views/admin/end_users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4><%= image_tag @end_user.get_profile_image(80, 80) %><%= @end_user.name %>さんのプロフィール</h4>
+    <table class="table table-borderless table-sm">
+      <tr>
+        <td>ID</td>
+        <td><%= @end_user.id %></td>
+      </tr>
+      <tr>
+        <td>ユーザーネーム</td>
+        <td><%= @end_user.name %></td>
+      </tr>
+      <tr>
+        <td>自己紹介文</td>
+        <td><%= @end_user.introduction %></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= @end_user.email %></td>
+      </tr>
+      <tr>
+        <td>ステータス</td>
+        <td>
+          <% if @end_user.is_active? %>
+          <span class="text-active">有効</span>
+          <% else %>
+          <span class="text-invalid">退会</span>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= link_to "編集する", edit_admin_end_user_path(@end_user), class: "btn btn-success" %></td>
+      </tr>
+    </table>
+  </div>
+</div>
