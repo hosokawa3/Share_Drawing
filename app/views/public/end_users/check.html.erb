@@ -1,0 +1,12 @@
+<section class="inner">
+  <h3 class="section-ttl">本当に退会しますか？</h3>
+  <p class="text-center">
+    退会すると、会員登録情報やこれまでの投稿作品、<br>
+    DMなどが閲覧できなくなります。退会する場合<br>
+    は、退会するを選んでください。
+  </p>
+  <div class="flex justify-around mt2">
+    <%= link_to "退会しない", profile_path(current_end_user.id), class: "btn btn-primary" %>
+    <%= link_to "退会する", end_users_withdraw_path, method: :patch, "data-confirm" => "OKを押すと退会処理がされます。本当によろしいですか？", class: "btn btn-danger" %>
+  </div>
+</section>

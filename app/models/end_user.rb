@@ -14,4 +14,9 @@ class EndUser < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  #退会したユーザーが同じアカウントでログインできないように
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end

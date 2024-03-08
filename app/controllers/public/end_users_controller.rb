@@ -15,6 +15,17 @@ class Public::EndUsersController < ApplicationController
     redirect_to profile_path
   end
 
+  def check
+  end
+
+#論理削除
+  def withdraw
+    end_user = EndUser.find(current_end_user.id)
+    end_user.update(is_active: false)
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def end_user_params

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :end_users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy]
   end
 
   scope module: :public do
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
     get 'end_users/profile/:id' => 'end_users#show', as: 'profile'
     get 'end_users/information/edit/:id' => 'end_users#edit', as: 'edit_information'
     patch 'end_users/information/:id' => 'end_users#update', as: 'update_information'
+    get 'end_users/check' => 'end_users#check'
+    patch 'end_users/withdraw' => 'end_users#withdraw'
     resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   end
 
