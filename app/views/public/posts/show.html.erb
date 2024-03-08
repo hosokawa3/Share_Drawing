@@ -1,8 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-6">
+    <div class="col-md-6 my-1">
       <%= image_tag @post.get_image(500, 500) %>
+
+      <% if @post.favorited_by?(current_end_user) %>
+      <p class="text-right">
+        <%= link_to post_favorite_path(@post), method: :delete do %>
+          ♥︎<%= @post.favorites.count %>いいね
+        <% end %>
+      </p>
+      <% else %>
+      <p class="text-right">
+        <%= link_to post_favorite_path(@post), method: :post do %>
+          ♡<%= @post.favorites.count %>いいね
+        <% end %>
+      </p>
+      <% end %>
+
     </div>
     <div class="col-md-4">
       <h2 class="my-5"><%= @post.title %></h2>
