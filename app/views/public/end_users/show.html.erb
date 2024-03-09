@@ -3,7 +3,8 @@
         <div class="col-md-2 my-5"><%= image_tag @end_user.get_profile_image(100,100) %></div>
         <div class="col-md-4">
             <h4 class="my-5"><%= @end_user.name %></h4>
-            <%= @end_user.introduction %>
+            <p><%= @end_user.introduction %></p>
+            <p><%= link_to "いいね一覧", favorites_end_user_path %></p>
         </div>
         <div class="col-md-2 my-5">
             <% if current_end_user == @end_user %>

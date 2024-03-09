@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     patch 'end_users/information/:id' => 'end_users#update', as: 'update_information'
     get 'end_users/check' => 'end_users#check'
     patch 'end_users/withdraw' => 'end_users#withdraw'
+    get 'end_users/favorites/:id' => 'end_users#favorites', as: 'favorites_end_user'
     resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
       resource :favorite, only: [:create, :destroy]
     end
