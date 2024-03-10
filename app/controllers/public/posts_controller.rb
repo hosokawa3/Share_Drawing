@@ -11,7 +11,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @q = Post.ransack(params[:q])
+    if params[:q].present?
+      @posts = @q.result(distinct: true)
+    else
+      @posts = Post.all
+    end
   end
 
   def show

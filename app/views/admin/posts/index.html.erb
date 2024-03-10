@@ -1,18 +1,6 @@
 <div class="container">
     <h3>作品一覧</h3>
+    <%= render 'public/posts/search', q: @q, url: admin_posts_path %>
 
-    <div class="content">
-      <% @posts.each do |post| %>
-      <%= link_to admin_post_path(post.id) do %>
-      <%= image_tag post.get_image(200, 200) %>
-      <h5><%= post.title %></h5>
-      <% end %>
-    <p>
-      <%= link_to admin_end_user_path(post.end_user.id) do %>
-      <%= image_tag post.end_user.get_profile_image(50, 50) %>
-      <%= post.end_user.name %>
-      <% end %>
-    </p>
-      <% end %>
-    </div>
+     <%= render 'public/posts/list', posts: @posts %>
 </div>

@@ -1,6 +1,8 @@
 <div class="container">
+  <h3>作品一覧</h3>
+  <%= render 'search', q: @q, url: posts_path %>
   <div class="row">
-    <h3>作品一覧</h3>
+    
     <div class="col-md-3"></div>
     <div class="col-md-9"><%= render 'list', posts: @posts %></div>
   </div>

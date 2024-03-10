@@ -1,8 +1,8 @@
 class Public::EndUsersController < ApplicationController
   def show
     @end_user = EndUser.find(params[:id])
-    #投稿作品を新着順に4件取得する
-    @posts = Post.order(created_at: :desc).limit(4)
+    #ユーザーごとに投稿作品を新着順に4件取得する
+    @posts = Post.where(end_user_id: @end_user).order(created_at: :desc).limit(4)
   end
 
   def edit

@@ -15,4 +15,10 @@ class Post < ApplicationRecord
   def favorited_by?(end_user)
     favorites.exists?(end_user_id: end_user.id)
   end
+
+  #ransackが検索可能な属性名を指定
+  def self.ransackable_attributes(auth_object = nil)
+    ["title"]
+  end
+
 end
