@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <h3>コメント一覧</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>作品名</th>
+          <th>ユーザー</th>
+          <th>コメント</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post_comments.each do |post_comment| %>
+        <tr>
+          <td><%= link_to post_comment.post.title, admin_post_path(post_comment.post) %></td>
+          <td><%= link_to post_comment.end_user.name, admin_end_user_path(post_comment.end_user) %></td>
+          <td><%= post_comment.comment %></td>
+          <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= link_to "削除", admin_post_post_comment_path(post_id: post_comment.post_id, id: post_comment.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+      </tbody>
+        <% end %>
+    </table>
+  </div>
+</div>

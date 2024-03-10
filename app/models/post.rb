@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :end_user
   has_many :favorites, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
   has_one_attached :image
 
   def get_image(width, height)

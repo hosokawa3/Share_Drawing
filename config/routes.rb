@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :end_users, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
+    get '/post_comments' => 'post_comments#index'
   end
 
   scope module: :public do
@@ -15,6 +18,7 @@ Rails.application.routes.draw do
     patch 'end_users/withdraw' => 'end_users#withdraw'
     get 'end_users/favorites/:id' => 'end_users#favorites', as: 'favorites_end_user'
     resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
   end
