@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:destroy]
     end
     get '/post_comments' => 'post_comments#index'
+    get 'end_users/index_posts/:id' => 'end_users#index_posts', as: 'index_posts_end_user'
   end
 
   scope module: :public do
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
     get 'end_users/check' => 'end_users#check'
     patch 'end_users/withdraw' => 'end_users#withdraw'
     get 'end_users/favorites/:id' => 'end_users#favorites', as: 'favorites_end_user'
+    get 'end_users/index_posts/:id' => 'end_users#index_posts', as: 'index_posts_end_user'
     resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]

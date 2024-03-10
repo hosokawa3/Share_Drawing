@@ -32,6 +32,11 @@ class Public::EndUsersController < ApplicationController
     @posts = Post.find(favorites)
   end
 
+  def index_posts
+    @end_user = EndUser.find(params[:id])
+    @posts = Post.where(end_user_id:params[:id])
+  end
+
   private
 
   def end_user_params
