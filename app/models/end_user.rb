@@ -21,4 +21,18 @@ class EndUser < ApplicationRecord
   def active_for_authentication?
     super && (is_active == true)
   end
+
+  GUEST_END_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_END_USER_EMAIL) do |end_user|
+      end_user.password = SecureRandom.urlsafe_base64
+      end_user.name = "guestuser"
+    end
+  end
+
+  def guest_end_user?
+    email == GUEST_END_USER_EMAIL
+  end
+
 end

@@ -1,4 +1,7 @@
 <div class="container">
+    <% if flash[:notice] %>
+        <div class="alert alert-warning"><%= notice %></div>
+    <% end %>
     <div class="row">
         <div class="col-md-2 my-5"><%= image_tag @end_user.get_profile_image(100,100) %></div>
         <div class="col-md-4">
@@ -7,7 +10,7 @@
             <p><%= link_to "いいね一覧", favorites_end_user_path %></p>
         </div>
         <div class="col-md-2 my-5">
-            <% if current_end_user == @end_user %>
+            <% if current_end_user == @end_user && current_end_user.email != "guest@example.com" %>
             <%= link_to "編集", edit_information_path(@end_user), class: "btn btn-info" %>
             <% end %>
         </div>

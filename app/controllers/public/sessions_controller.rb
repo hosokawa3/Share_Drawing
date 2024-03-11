@@ -28,4 +28,10 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     posts_path
   end
+
+  def guest_sign_in
+    end_user = EndUser.guest
+    sign_in end_user
+    redirect_to posts_path, notice: "guestuserでログインしました"
+  end
 end
