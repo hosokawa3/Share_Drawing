@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <h3>作品一覧</h3>
+    <div class="col-md-4">
+      <h3>タグが<%= @tag.tag_name %>の作品一覧</h3>
     </div>
     <div class="col-md-6">
       <% @tags.each do |tag| %>
@@ -9,9 +9,7 @@
         <%= "(#{tag.posts.count})" %>
       <% end %>
     </div>
-    <div class="col-md-3">
-      <%= render 'search', q: @q, url: posts_path %>
-    </div>
+    <div class="col-md-2"></div>
   </div>
   <div class="row">
     <%= render 'list', posts: @posts %>

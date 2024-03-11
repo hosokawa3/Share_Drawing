@@ -6,11 +6,15 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.end_user_id = current_end_user.id
+    #受け取った値を,で区切って配列にする
+    tags = params[:post][:tag_name].split(',')
     @post.save
+    @post.save_tags(tags)
     redirect_to posts_path
   end
 
   def index
+    @tags = Tag.all
     @q = Post.ransack(params[:q])
     if params[:q].present?
       @posts = @q.result(distinct: true)
@@ -22,15 +26,20 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    @tags = @post.tags.pluck(:tag_name).join(',')
+    @post_tags = @post.tags
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tags = @post.tags.pluck(:tag_name).join(',')
   end
 
   def update
     post = Post.find(params[:id])
+    tags = params[:post][:tag_name].split(',')
     post.update(post_params)
+    post.save_tags(tags)
     redirect_to post_path(post.id)
   end
 
@@ -38,6 +47,12 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     redirect_to posts_path
+  end
+
+  def search_tag
+    @tags = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts
   end
 
   private

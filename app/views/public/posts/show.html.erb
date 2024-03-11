@@ -36,6 +36,11 @@
     </div>
     <div class="col-md-4">
       <h2 class="my-5"><%= @post.title %></h2>
+
+      <% @post_tags.each do |post_tag| %>
+        <%= link_to post_tag.tag_name, search_tag_path(tag_id: post_tag.id) %>
+      <% end %>
+
       <P><%= @post.caption %></P>
       <P>
         <%= link_to profile_path(@post.end_user.id) do %>

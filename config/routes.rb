@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end
+    get 'search_tag' => 'posts#search_tag'
   end
 
   #管理者側
