@@ -6,6 +6,10 @@ class EndUser < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followings, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
   has_one_attached :profile_image
 
@@ -33,6 +37,21 @@ class EndUser < ApplicationRecord
 
   def guest_end_user?
     email == GUEST_END_USER_EMAIL
+  end
+
+  #指定したユーザーをフォローする
+  def follow(end_user)
+    active_relationships.create(followed_id: end_user.id)
+  end
+
+  #指定したユーザーのフォローを解除する
+  def unfollow(end_user)
+    active_relationships.find_by(followed_id: end_user.id).destroy
+  end
+
+  #指定したユーザーをフォローしているかどうか判定
+  def following?(end_user)
+    followings.include?(end_user)
   end
 
 end
