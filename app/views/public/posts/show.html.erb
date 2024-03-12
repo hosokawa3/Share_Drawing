@@ -47,6 +47,15 @@
         <%= image_tag @post.end_user.get_profile_image(100, 100) %>
         <%= @post.end_user.name %>
         <% end %>
+        <%= render "public/relationships/btn", end_user: @post.end_user %>
+      </p>
+      <p>
+        <%= link_to followings_path(@post.end_user) do %>
+          <%= @post.end_user.followings.count %>フォロー
+        <% end %>
+        <%= link_to followers_path(@post.end_user) do %>
+          <%= @post.end_user.followers.count %>フォロワー
+        <% end %>
       </p>
       <% if @post.end_user == current_end_user %>
       <%= link_to "作品を編集する", edit_post_path(@post.id), class:"btn btn-success" %>

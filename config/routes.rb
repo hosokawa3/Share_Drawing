@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     patch 'end_users/withdraw' => 'end_users#withdraw'
     get 'end_users/favorites/:id' => 'end_users#favorites', as: 'favorites_end_user'
     get 'end_users/index_posts/:id' => 'end_users#index_posts', as: 'index_posts_end_user'
-    post 'end_users/:end_user_id/relationships' => 'relationships#create'
+    post 'end_users/:end_user_id/relationships' => 'relationships#create', as: 'end_user_relatioships'
     delete 'end_users/:end_user_id/relationships' => 'relationships#destroy'
     get 'end_users/:end_user_id/followings' => 'relationships#followings', as: 'followings'
     get 'end_users/:end_user_id/followers' => 'relationships#followers', as: 'followers'

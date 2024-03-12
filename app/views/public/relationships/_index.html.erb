@@ -1,0 +1,9 @@
+<table class="table table-borderless">
+  <% end_users.each do |end_user| %>
+  <tr>
+    <td><%= image_tag end_user.get_profile_image(100, 100) %></td>
+    <td><%= end_user.name %></td>
+    <td><%= end_user.introduction %></td>
+  </tr>
+  <% end %>
+</table>
