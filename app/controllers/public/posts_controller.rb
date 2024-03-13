@@ -28,6 +28,10 @@ class Public::PostsController < ApplicationController
     @post_comment = PostComment.new
     @tags = @post.tags.pluck(:tag_name).join(',')
     @post_tags = @post.tags
+    #一度閲覧したユーザーを数えない(１日１回)
+    unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(end_user_id: current_end_user.id, post_id: @post.id)
+      current_end_user.view_counts.create(post_id: @post.id)
+    end
   end
 
   def edit

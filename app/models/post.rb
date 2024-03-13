@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_many :view_counts, dependent: :destroy
   has_one_attached :image
 
   def get_image(width, height)
