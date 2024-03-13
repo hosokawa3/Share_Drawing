@@ -6,7 +6,23 @@
         <div class="col-md-2 my-5"><%= image_tag @end_user.get_profile_image(100,100) %></div>
         <div class="col-md-4">
             <h4 class="my-5"><%= @end_user.name %><%= render "public/relationships/btn", end_user: @end_user %></h4>
-            <p><%= @end_user.introduction %></p>
+            <p>
+                <%= @end_user.introduction %>
+                <% unless @end_user.id == current_end_user.id %>
+                    <% if (current_end_user.following? @end_user) && (@end_user.following? current_end_user) %>
+                    <% if @is_room == true %>
+                        <%= link_to "チャットへ", room_path(@room_id), class: "btn btn-primary" %>
+                    <% else %>
+                    <%= form_with model: @room do |f| %>
+                        <%= fields_for @entry do |e| %>
+                            <%= e.hidden_field :end_user_id, value: @end_user.id %>
+                        <% end %>
+                        <%= f.submit "チャットを始める", class: "btn btn-primary" %>
+                    <% end %>
+                    <% end %>
+                    <% end %>
+                <% end %>
+            </p>
             <p>
                 <%= link_to followings_path(@end_user) do %>
                 <%= @end_user.followings.count %>フォロー

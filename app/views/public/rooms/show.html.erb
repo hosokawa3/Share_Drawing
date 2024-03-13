@@ -1,0 +1,22 @@
+<div class="container">
+  <% @entries.each do |entry| %>
+    <% if @my_end_user_id != entry.end_user.id %>
+      <h3><%= entry.end_user.name %>さんとのトークルーム</h3>
+       <%= link_to "プロフィールへ戻る", profile_path(entry.end_user) %>
+    <% end %>
+  <% end %>
+
+  <% if @messages.present? %>
+    <% @messages.each do |message| %>
+      <% @my_end_user_id == message.end_user.id %>
+      <p><%= message.end_user.name %></p>
+      <p><%= message.message %></p>
+    <% end %>
+  <% end %>
+
+  <%= form_with model: @message do |f| %>
+    <%= f.text_field :message, placeholder: "メッセージを入力してください", class: "form-control" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.submit "送信" %>
+  <% end %>
+</div>
