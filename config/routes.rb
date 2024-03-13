@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
     end
     get 'search_tag' => 'posts#search_tag'
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create, :show]
   end
 
   #管理者側
