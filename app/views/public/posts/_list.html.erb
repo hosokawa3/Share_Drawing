@@ -1,5 +1,6 @@
-<div class="content">
+<div class="contents" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
   <% posts.each do |post| %>
+  <div class="content" style="padding: 10px; flex: 1; margin: 10px;">
   <%= link_to post_path(post.id) do %>
     <%= image_tag post.get_image(200, 200) %>
   <h5><%= post.title %></h5>
@@ -10,5 +11,6 @@
     <%= post.end_user.name %>
     <% end %>
     </p>
+  </div>
   <% end %>
 </div>
