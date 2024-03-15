@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get 'search_tag' => 'posts#search_tag'
     resources :messages, only: [:create]
     resources :rooms, only: [:create, :show]
+    resources :notifications, only: [:update]
   end
 
   #管理者側

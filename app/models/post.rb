@@ -5,7 +5,14 @@ class Post < ApplicationRecord
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
   has_many :view_counts, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
   has_one_attached :image
+  
+  after_create do
+    end_user.followers.each do |follower|
+      notifications.create(end_user_id: follower.id)
+    end
+  end
 
   def get_image(width, height)
     unless image.attached?

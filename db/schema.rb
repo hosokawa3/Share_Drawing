@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_13_123135) do
+ActiveRecord::Schema.define(version: 2024_03_15_015300) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,17 @@ ActiveRecord::Schema.define(version: 2024_03_13_123135) do
     t.index ["room_id"], name: "index_messages_on_room_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_notifications_on_end_user_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.text "comment"
     t.integer "end_user_id"
@@ -155,6 +166,7 @@ ActiveRecord::Schema.define(version: 2024_03_13_123135) do
   add_foreign_key "entries", "rooms"
   add_foreign_key "messages", "end_users"
   add_foreign_key "messages", "rooms"
+  add_foreign_key "notifications", "end_users"
   add_foreign_key "rooms", "end_users"
   add_foreign_key "tag_maps", "posts"
   add_foreign_key "tag_maps", "tags"
