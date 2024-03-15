@@ -10,9 +10,10 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   after_create do
-    end_user.followers.each do |follower|
-      notifications.create(end_user_id: follower.id)
+    records = end_user.followers.map do |follower|
+      notifications.new(end_user_id: follower.id)
     end
+    Notification.import records
   end
 
   def notification_message
