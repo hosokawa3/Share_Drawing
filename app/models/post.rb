@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  include Notifiable
   belongs_to :end_user
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
@@ -7,11 +8,19 @@ class Post < ApplicationRecord
   has_many :view_counts, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
   has_one_attached :image
-  
+
   after_create do
     end_user.followers.each do |follower|
       notifications.create(end_user_id: follower.id)
     end
+  end
+
+  def notification_message
+    "フォローしている#{end_user.name}さんが#{title}を投稿しました"
+  end
+
+  def notification_path
+    post_path(self)
   end
 
   def get_image(width, height)
