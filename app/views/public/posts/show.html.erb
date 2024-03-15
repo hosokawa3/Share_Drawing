@@ -27,8 +27,8 @@
         <%= link_to post_tag.tag_name, search_tag_path(tag_id: post_tag.id) %>
       <% end %>
 
-      <P><%= @post.caption %></P>
-      <P>
+      <p><%= @post.caption %></p>
+      <p class="icon">
         <%= link_to profile_path(@post.end_user.id) do %>
         <%= image_tag @post.end_user.get_profile_image(100, 100) %>
         <%= @post.end_user.name %>
