@@ -22,9 +22,9 @@ class Public::PostsController < ApplicationController
     @tags = Tag.all
     @q = Post.ransack(params[:q])
     if params[:q].present?
-      @posts = @q.result(distinct: true)
+      @posts = @q.result(distinct: true).page(params[:page]).per(8)
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(8)
     end
   end
 
@@ -61,7 +61,7 @@ class Public::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts
+    @posts = @tag.posts.page(params[:page]).per(8)
   end
 
   private

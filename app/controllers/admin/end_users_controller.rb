@@ -2,7 +2,7 @@ class Admin::EndUsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @end_users = EndUser.all
+    @end_users = EndUser.all.page(params[:page]).per(5)
   end
 
   def show

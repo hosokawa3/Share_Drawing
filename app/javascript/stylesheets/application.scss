@@ -15,6 +15,10 @@ main {
   min-height: 70vh;
 }
 
+body {
+  background-color: #FCFCFC;
+}
+
 footer{
   width: 100%;
   height: 100px;
@@ -48,4 +52,26 @@ section h3 {
 
 .icon img {
   border-radius: 50%;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+  background-color: #FCFCFC;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #786666;
+    border-color: #786666;
+    border-radius: 15px;
 }
