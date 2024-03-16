@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_end_user!, except: [:index]
+
   def new
     @post = Post.new
   end
@@ -8,9 +10,12 @@ class Public::PostsController < ApplicationController
     @post.end_user_id = current_end_user.id
     #受け取った値を,で区切って配列にする
     tags = params[:post][:tag_name].split(',')
-    @post.save
-    @post.save_tags(tags)
-    redirect_to posts_path
+    if @post.save
+      @post.save_tags(tags)
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def index

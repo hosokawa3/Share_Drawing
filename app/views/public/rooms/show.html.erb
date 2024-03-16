@@ -9,7 +9,10 @@
   <% if @messages.present? %>
     <% @messages.each do |message| %>
       <% @my_end_user_id == message.end_user.id %>
-      <p><%= message.end_user.name %></p>
+      <p class="icon">
+        <%= image_tag message.end_user.get_profile_image(50, 50) %>
+        <%= message.end_user.name %>
+      </p>
       <p><%= message.message %></p>
     <% end %>
   <% end %>

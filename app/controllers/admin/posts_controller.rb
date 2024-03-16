@@ -1,4 +1,6 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
      @q = Post.ransack(params[:q])
     if params[:q].present?

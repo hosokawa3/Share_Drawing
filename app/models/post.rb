@@ -9,6 +9,9 @@ class Post < ApplicationRecord
   has_many :notifications, as: :notifiable, dependent: :destroy
   has_one_attached :image
 
+  validates :title, presence: true
+  validates :image, presence: true
+
   after_create do
     records = end_user.followers.map do |follower|
       notifications.new(end_user_id: follower.id)
@@ -25,10 +28,10 @@ class Post < ApplicationRecord
   end
 
   def get_image(width, height)
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/sample.png')
-      image.attach(io: File.open(file_path), filename: 'sample.png', content_type: 'image/png')
-    end
+    # unless image.attached?
+      # file_path = Rails.root.join('app/assets/images/sample.png')
+      # image.attach(io: File.open(file_path), filename: 'sample.png', content_type: 'image/png')
+    # end
       image.variant(resize_to_limit: [width, height]).processed
   end
 

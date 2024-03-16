@@ -2,7 +2,7 @@
   <% end_users.each do |end_user| %>
   <tr>
     <td class="icon"><%= image_tag end_user.get_profile_image(100, 100) %></td>
-    <td><%= end_user.name %></td>
+    <td><%= link_to end_user.name, profile_path(end_user) %></td>
     <td><%= end_user.introduction %></td>
   </tr>
   <% end %>

@@ -1,5 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :ensure_guest_end_user, only: [:edit]
+  before_action :authenticate_end_user!
 
   def show
     @end_user = EndUser.find(params[:id])
