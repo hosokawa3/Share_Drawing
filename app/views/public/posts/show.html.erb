@@ -24,6 +24,7 @@
       <h2 class="my-5"><%= @post.title %></h2>
 
       <% @post_tags.each do |post_tag| %>
+        <i class="fa-solid fa-tags" style="color: #4a3f3f;"></i>
         <%= link_to post_tag.tag_name, search_tag_path(tag_id: post_tag.id) %>
       <% end %>
 

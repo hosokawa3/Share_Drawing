@@ -35,7 +35,9 @@
         </div>
         <div class="col-md-2 my-5">
             <% if current_end_user == @end_user && current_end_user.email != "guest@example.com" %>
-            <%= link_to "編集", edit_information_path(@end_user), class: "btn btn-info" %>
+            <%= link_to edit_information_path(@end_user), class: "btn btn-secondary btn-lg" do %>
+            <i class="fa-solid fa-gear" style="color: #ffffff;"></i>
+            <% end %>
             <% end %>
         </div>
         <div class="col-md-4"></div>

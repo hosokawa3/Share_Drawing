@@ -5,7 +5,8 @@
     </div>
     <div class="col-md-6">
       <% @tags.each do |tag| %>
-        #<%= link_to tag.tag_name, search_tag_path(tag_id: tag.id) %>
+        <i class="fa-solid fa-tags" style="color: #4a3f3f;"></i>
+        <%= link_to tag.tag_name, search_tag_path(tag_id: tag.id) %>
         <%= "(#{tag.posts.count})" %>
       <% end %>
     </div>
