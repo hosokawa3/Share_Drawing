@@ -1,5 +1,7 @@
 <div class="container">
     <h3>作品一覧</h3>
+    
+    
     <%= render 'public/posts/search', q: @q, url: admin_posts_path %>
 
      <%= render 'admin/posts/list', posts: @posts %>

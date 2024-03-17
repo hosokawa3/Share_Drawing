@@ -24,7 +24,16 @@ class Public::PostsController < ApplicationController
     if params[:q].present?
       @posts = @q.result(distinct: true).page(params[:page]).per(8)
     else
-      @posts = Post.all.page(params[:page]).per(8)
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(8)
+    end
+    if params[:latest]
+      @posts = Post.latest.page(params[:page]).per(8)
+    elsif params[:old]
+      @posts = Post.old.page(params[:page]).per(8)
+    elsif params[:most_favorited]
+      @posts = Kaminari.paginate_array(Post.most_favorited).page(params[:page]).per(8)
+    else
+      @Posts = Post.all.order(created_at: :desc).page(params[:page]).per(8)
     end
   end
 
@@ -61,7 +70,7 @@ class Public::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.page(params[:page]).per(8)
+    @posts = @tag.posts.order(created_at: :desc).page(params[:page]).per(8)
   end
 
   private

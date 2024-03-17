@@ -7,11 +7,13 @@ class Post < ApplicationRecord
   has_many :tags, through: :tag_maps
   has_many :view_counts, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
+  has_many :favorited_end_users, through: :favorites, source: :end_user
   has_one_attached :image
 
   validates :title, presence: true
   validates :image, presence: true
 
+  #通知
   after_create do
     records = end_user.followers.map do |follower|
       notifications.new(end_user_id: follower.id)
@@ -63,5 +65,10 @@ class Post < ApplicationRecord
       self.tags << tag
     end
   end
+
+  #並び替え
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc)}
+  scope :most_favorited, -> { includes(:favorited_end_users).sort_by { |x| x.favorited_end_users.includes(:favorites).size }.reverse }
 
 end
