@@ -2,11 +2,26 @@
   <div class="row">
     <div class="mx-auto">
       <h1 class="my-5">Welcome to Share Drawing!</h1>
-      <P>このサイトは、自分の描いたイラストをさまざまな方と共有<br>
-      できるコミュニティサイトです。<br>
-      会員登録されない方も作品の閲覧はできますが、<br>
-      投稿や作品への評価をするには会員登録が必要になります。</P>
-      <%= link_to "ゲストログイン(閲覧用)", end_users_guest_sign_in_path, class: "btn btn-secondary", method: :post %>
     </div>
+    <div class="row">
+      <div class="col-md-2">
+        <%= image_tag 'top-2.png', size: '180x180' %>
+      </div>
+      <div class="col-md-7 offset-md-1">
+        <p class="text-center">このサイトは、自分の描いたイラストをさまざまな<br>
+          方と共有できるコミュニティサイトです。<br>
+          会員登録されない方も作品の閲覧はできますが、<br>
+          投稿や作品への評価をするには会員登録が<br>
+          必要になります。
+        </p>
+          <div class="d-grid gap-2 col-8 mx-auto">
+            <%= link_to "ゲストログイン(閲覧用)", end_users_guest_sign_in_path, class: "btn btn-secondary btn-block", method: :post %>
+          </div>
+      </div>
+      <div class="col-md-2">
+        <%= image_tag 'top_1.png', size: '350x350' %>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -7,7 +7,7 @@
 
       <p>コメント件数:<%= @post.post_comments.count %></p>
       <% @post.post_comments.each do |post_comment| %>
-        <p><%= image_tag post_comment.end_user.get_profile_image(30, 30) %></p>
+        <p class="icon"><%= image_tag post_comment.end_user.get_profile_image(30, 30) %></p>
         <%= post_comment.end_user.name %>
         <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
         <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
@@ -16,8 +16,8 @@
     </div>
     <div class="col-md-4">
       <h2 class="my-5"><%= @post.title %></h2>
-      <P><%= @post.caption %></P>
-      <P>
+      <p><%= @post.caption %></p>
+      <p class="icon">
         <%= link_to admin_end_user_path(@post.end_user.id) do %>
         <%= image_tag @post.end_user.get_profile_image(100, 100) %>
         <%= @post.end_user.name %>

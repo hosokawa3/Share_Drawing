@@ -1,8 +1,18 @@
 <div class="container">
-    <h3>作品一覧</h3>
-    
-    
-    <%= render 'public/posts/search', q: @q, url: admin_posts_path %>
-
-     <%= render 'admin/posts/list', posts: @posts %>
+  <div class="row">
+    <div class="col-md-3">
+      <h3>作品一覧</h3>
+      <%= link_to '新着順', admin_posts_path(latest: "true") %>|
+      <%= link_to '古い順', admin_posts_path(old: "true") %>|
+      <%= link_to 'いいね順', admin_posts_path(most_favorited: "true") %>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+      <%= render 'public/posts/search', q: @q, url: admin_posts_path %>
+    </div>
+  </div>
+  <div class="row">
+    <%= render 'admin/posts/list', posts: @posts %>
+  </div>
+   <%= paginate @posts %>
 </div>
