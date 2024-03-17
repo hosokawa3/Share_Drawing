@@ -57,5 +57,9 @@ class EndUser < ApplicationRecord
   def following?(end_user)
     followings.include?(end_user)
   end
+  
+    def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 
 end

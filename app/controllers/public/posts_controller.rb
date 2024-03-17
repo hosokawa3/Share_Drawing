@@ -20,12 +20,13 @@ class Public::PostsController < ApplicationController
 
   def index
     @tags = Tag.all
-    @q = Post.ransack(params[:q])
-    if params[:q].present?
+    @q = Post.ransack(title_or_end_user_name_cont: params[:title_or_end_user_name_cont])
+    if params[:title_or_end_user_name_cont].present?
       @posts = @q.result(distinct: true).page(params[:page]).per(8)
     else
       @posts = Post.all.order(created_at: :desc).page(params[:page]).per(8)
     end
+    
     if params[:latest]
       @posts = Post.latest.page(params[:page]).per(8)
     elsif params[:old]
@@ -33,8 +34,11 @@ class Public::PostsController < ApplicationController
     elsif params[:most_favorited]
       @posts = Kaminari.paginate_array(Post.most_favorited).page(params[:page]).per(8)
     else
-      @Posts = Post.all.order(created_at: :desc).page(params[:page]).per(8)
+      unless params[:title_or_end_user_name_cont].present?
+        @Posts = Post.all.order(created_at: :desc).page(params[:page]).per(8)
+      end
     end
+    
   end
 
   def show

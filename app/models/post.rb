@@ -43,7 +43,12 @@ class Post < ApplicationRecord
 
   #ransackが検索可能な属性名を指定
   def self.ransackable_attributes(auth_object = nil)
-    ["title"]
+    ["title", "end_user_id"]
+  end
+  
+  #ransackが検索可能な関連名を指定
+  def self.ransackable_associations(auth_object = nil)
+    ["end_user"]
   end
 
   def save_tags(tags)
