@@ -11,13 +11,13 @@
                 <% unless @end_user.id == current_end_user.id %>
                     <% if (current_end_user.following? @end_user) && (@end_user.following? current_end_user) %>
                     <% if @is_room == true %>
-                        <%= link_to "チャットへ", room_path(@room_id), class: "btn btn-primary" %>
+                        <%= link_to "チャットへ", room_path(@room_id), class: "btn btn-info btn-block" %>
                     <% else %>
                     <%= form_with model: @room do |f| %>
                         <%= fields_for @entry do |e| %>
                             <%= e.hidden_field :end_user_id, value: @end_user.id %>
                         <% end %>
-                        <%= f.submit "チャットを始める", class: "btn btn-primary" %>
+                        <%= f.submit "チャットを始める", class: "btn btn-info btn-block" %>
                     <% end %>
                     <% end %>
                     <% end %>
