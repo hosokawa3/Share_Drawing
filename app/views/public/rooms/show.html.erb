@@ -8,18 +8,31 @@
 
   <% if @messages.present? %>
     <% @messages.each do |message| %>
-      <% @my_end_user_id == message.end_user.id %>
-      <p class="icon">
+      <% if message.end_user.id == current_end_user.id %>
+      <div class="icon mb-1 d-flex flex-row-reverse">
         <%= image_tag message.end_user.get_profile_image(50, 50) %>
-        <%= message.end_user.name %>
-      </p>
-      <p><%= message.message %></p>
+        <div class="rounded bg-secondary text-white text-break mw-100" style="max-width:50%">
+          <%= message.message %>
+        </div>
+
+      </div>
+      <% else %>
+        <div class="icon mb-1 d-flex">
+          <%= image_tag message.end_user.get_profile_image(50, 50) %>
+          <div class="rounded bg-secondary text-white text-break" style="max-width:50%">
+            <%= message.message %>
+          </div>
+
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 
-  <%= form_with model: @message do |f| %>
-    <%= f.text_field :message, placeholder: "メッセージを入力してください", class: "form-control" %>
+  <%= form_with model: @message, class: "d-flex" do |f| %>
+    <%= f.text_field :message, placeholder: "メッセージを入力してください", class: "form-control w-50" %>
       <%= f.hidden_field :room_id, value: @room.id %>
-      <%= f.submit "送信" %>
+      <%= button_tag type: "submit", class: "btn btn-secondary" do %>
+         <i class="fa-solid fa-paper-plane"></i>
+      <% end %>
   <% end %>
 </div>
