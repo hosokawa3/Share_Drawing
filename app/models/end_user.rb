@@ -58,7 +58,8 @@ class EndUser < ApplicationRecord
     followings.include?(end_user)
   end
 
-    def self.ransackable_attributes(auth_object = nil)
+  #Ransackによる検索機能　ユーザーネームで検索できるように
+  def self.ransackable_attributes(auth_object = nil)
     ["name"]
   end
 

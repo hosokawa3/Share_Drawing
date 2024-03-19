@@ -30,11 +30,8 @@ class Post < ApplicationRecord
   end
 
   def get_image(width, height)
-    # unless image.attached?
-      # file_path = Rails.root.join('app/assets/images/sample.png')
-      # image.attach(io: File.open(file_path), filename: 'sample.png', content_type: 'image/png')
-    # end
-      image.variant(resize_to_limit: [width, height]).processed
+    #投稿画像のサイズ指定ができるように
+    image.variant(resize_to_limit: [width, height]).processed
   end
 
   def favorited_by?(end_user)

@@ -6,6 +6,7 @@ class Public::EndUsersController < ApplicationController
     @end_user = EndUser.find(params[:id])
     #ユーザーごとに投稿作品を新着順に4件取得する
     @posts = Post.where(end_user_id: @end_user).order(created_at: :desc).limit(4)
+    #DM機能
     @current_entry = Entry.where(end_user_id: current_end_user.id)
     @another_entry = Entry.where(end_user_id: @end_user.id)
     unless @end_user.id == current_end_user.id
@@ -45,12 +46,14 @@ class Public::EndUsersController < ApplicationController
     redirect_to root_path
   end
 
+  #いいねした投稿一覧
   def favorites
     @end_user = EndUser.find(params[:id])
     favorites = Favorite.where(end_user_id: @end_user.id).pluck(:post_id)
     @posts = Post.find(favorites)
   end
 
+  #ユーザーごとの投稿一覧
   def index_posts
     @end_user = EndUser.find(params[:id])
     @posts = Post.where(end_user_id:params[:id]).page(params[:page]).per(8)

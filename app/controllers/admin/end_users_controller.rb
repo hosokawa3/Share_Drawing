@@ -19,6 +19,7 @@ class Admin::EndUsersController < ApplicationController
     redirect_to admin_end_user_path(end_user.id)
   end
 
+  #ユーザーごとの投稿一覧
   def index_posts
     @end_user = EndUser.find(params[:id])
     @posts = Post.where(end_user_id:params[:id])

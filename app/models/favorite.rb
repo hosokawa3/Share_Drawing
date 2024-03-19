@@ -4,6 +4,7 @@ class Favorite < ApplicationRecord
   belongs_to :post
   has_one :notification, as: :notifiable, dependent: :destroy
 
+  #通知
   after_create do
     create_notification(end_user_id: post.end_user_id)
   end
