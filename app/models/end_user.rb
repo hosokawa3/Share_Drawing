@@ -19,8 +19,8 @@ class EndUser < ApplicationRecord
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/user.jpeg')
-      profile_image.attach(io: File.open(file_path), filename: 'user.jpeg', content_type: 'image/jpeg')
+      file_path = Rails.root.join('app/assets/images/user.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'user.jpg', content_type: 'image/jpg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
@@ -57,7 +57,7 @@ class EndUser < ApplicationRecord
   def following?(end_user)
     followings.include?(end_user)
   end
-  
+
     def self.ransackable_attributes(auth_object = nil)
     ["name"]
   end
