@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_end_user!, except: [:index]
+  before_action :authorize_end_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -26,7 +27,7 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.all.order(created_at: :desc).page(params[:page]).per(8)
     end
-    
+
     if params[:latest]
       @posts = Post.latest.page(params[:page]).per(8)
     elsif params[:old]
@@ -38,7 +39,7 @@ class Public::PostsController < ApplicationController
         @Posts = Post.all.order(created_at: :desc).page(params[:page]).per(8)
       end
     end
-    
+
   end
 
   def show
@@ -82,4 +83,12 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :caption, :image)
   end
+
+  def authorize_end_user
+    post = Post.find(params[:id])
+    unless post.end_user == current_end_user
+      redirect_to post_path(post)
+    end
+  end
+
 end

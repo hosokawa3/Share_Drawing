@@ -23,7 +23,7 @@
           <%= f.text_field :tag_name,value: @tags, class: 'form-control' %>
         </div>
       </div>
-         <%= f.submit '保存する', class: "btn btn-primary" %><%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+         <%= f.submit '保存する', class: "btn btn-primary btn-block" %><%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-block" %>
       <% end %>
 
     </div>
