@@ -40,15 +40,9 @@ class Public::SessionsController < Devise::SessionsController
 
   def reject_end_user
     @end_user = EndUser.find_by(email: params[:end_user][:email])
-    if @end_user
-      if @end_user.valid_password?(params[:end_user][:password]) && (@end_user.is_active == false)
-        flash[:warning] = "退会済みです。再度ご登録してご利用ください"
-        redirect_to new_end_user_registration_path
-      else
-        flash[:warning] = "項目を入力してください"
-      end
-    else
-      flash[:warning] = "該当するユーザーが見つかりません"
+    if @end_user.valid_password?(params[:end_user][:password]) && (@end_user.is_active == false)
+      flash[:warning] = "退会済みです。再度ご登録してご利用ください"
+      redirect_to new_end_user_registration_path
     end
   end
 end

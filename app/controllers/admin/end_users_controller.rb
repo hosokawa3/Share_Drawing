@@ -22,7 +22,7 @@ class Admin::EndUsersController < ApplicationController
   #ユーザーごとの投稿一覧
   def index_posts
     @end_user = EndUser.find(params[:id])
-    @posts = Post.where(end_user_id:params[:id])
+    @posts = Post.where(end_user_id:params[:id]).page(params[:page]).per(8)
   end
 
   private

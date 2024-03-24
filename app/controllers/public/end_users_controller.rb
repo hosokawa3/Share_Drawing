@@ -54,7 +54,7 @@ class Public::EndUsersController < ApplicationController
   def favorites
     @end_user = EndUser.find(params[:id])
     favorites = Favorite.where(end_user_id: @end_user.id).pluck(:post_id)
-    @posts = Post.find(favorites)
+    @posts = Kaminari.paginate_array(Post.find(favorites)).page(params[:page]).per(8)
   end
 
   #ユーザーごとの投稿一覧

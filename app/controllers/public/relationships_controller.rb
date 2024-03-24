@@ -15,12 +15,12 @@ class Public::RelationshipsController < ApplicationController
 
   def followings
     end_user = EndUser.find(params[:end_user_id])
-    @end_users = end_user.followings
+    @end_users = end_user.followings.page(params[:page]).per(5)
   end
 
   def followers
     end_user = EndUser.find(params[:end_user_id])
-    @end_users = end_user.followers
+    @end_users = end_user.followers.page(params[:page]).per(5)
   end
 
 end
