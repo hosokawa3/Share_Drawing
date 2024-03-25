@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_end_user!, except: [:index]
+  before_action :authenticate_end_user!, except: [:index, :search_tag]
   before_action :authorize_end_user, only: [:edit, :update, :destroy]
 
   def new

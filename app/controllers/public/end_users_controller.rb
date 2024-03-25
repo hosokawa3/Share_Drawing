@@ -35,6 +35,7 @@ class Public::EndUsersController < ApplicationController
     if @end_user.update(end_user_params)
       redirect_to profile_path
     else
+      flash.now[:warning] = "名前を入力してください"
       render :edit
     end
   end
