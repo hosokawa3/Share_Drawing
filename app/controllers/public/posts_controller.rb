@@ -59,11 +59,15 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     tags = params[:post][:tag_name].split(',')
-    post.update(post_params)
-    post.save_tags(tags)
-    redirect_to post_path(post.id)
+    if @post.update(post_params)
+      @post.save_tags(tags)
+      redirect_to post_path(@post.id)
+    else
+      flash.now[:warning] = "タイトルを入力してください"
+      render :edit
+    end
   end
 
   def destroy
