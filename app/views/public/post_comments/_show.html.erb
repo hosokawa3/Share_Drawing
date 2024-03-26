@@ -1,5 +1,5 @@
  <% post.post_comments.each do |post_comment| %>
-  <div class="icon icon mb-1 d-flex">
+  <div class="icon mb-1 d-flex">
     <%= image_tag post_comment.end_user.get_profile_image(30, 30) %>
     <%= post_comment.comment %>
   </div>
